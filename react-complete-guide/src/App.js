@@ -5,6 +5,12 @@ import Navigation from './Navigation/Navigation'
 
 class App extends Component {
   state = {
+    navigation: [
+      {home: 'Home'},
+      {news: 'News'},
+      {contact: 'Contact'},
+      {about: 'about'}
+    ],
     persons: [
       {name: 'Bill', age: 33},
       {name: 'Cacy', age: 42},
@@ -14,7 +20,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navigation />
+        <Navigation navItem={this.state.navigation[0].home}
+        navItem2={this.state.navigation[1].news}
+        navItem3={this.state.navigation[2].contact}
+        navItem4={this.state.navigation[3].about} 
+        />
         <h1>Hello I'm a React App</h1>
         <button>Switch Name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
