@@ -3,6 +3,8 @@ import "./App.css";
 import Person from "./Person/Person";
 import Navigation from "./Navigation/Navigation";
 
+
+
 class App extends Component {
   state = {
     navigation: [
@@ -51,14 +53,6 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer"
-    };
     let persons = null;
 
     if (this.state.showPersons) {
@@ -67,7 +61,7 @@ class App extends Component {
           {this.state.persons.map((person, index) => {
             return (
               <Person
-                click={() => this.deletePersonHandler(index)}
+                click={() => this.deletePersonsHandler(index)}
                 name={person.name}
                 age={person.age}
                 key={person.id}
@@ -77,8 +71,18 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = "red";
     }
+
+    let classes = []; 
+
+    if(this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+
+    if(this.state.persons.length <= 1) {
+      classes.push('bold')
+    }
+
     return (
       <div className="App">
         <Navigation
@@ -88,8 +92,9 @@ class App extends Component {
           navItem4={this.state.navigation[3].about}
         />
         <h1>Hello I'm a React App</h1>
-        <button style={style} onClick={this.togglePersonsHandler}>
-          Toggle Persons
+        <p className={classes.join(' ')}>This is really working</p>
+        <button className="button" onClick={this.togglePersonsHandler}>
+            Toggle Persons
         </button>
         {persons}
       </div>
