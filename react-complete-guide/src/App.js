@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import classes from "./App.css";
 import Person from "./Person/Person";
 import Navigation from "./Navigation/Navigation";
 
@@ -54,6 +54,7 @@ class App extends Component {
 
   render() {
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -71,20 +72,21 @@ class App extends Component {
           })}
         </div>
       );
+      btnClass = classes.red;
     }
 
-    let classes = []; 
+    let arrClasses = []; 
 
     if(this.state.persons.length <= 2) {
-      classes.push('red');
+      arrClasses.push(classes.red);
     }
 
     if(this.state.persons.length <= 1) {
-      classes.push('bold')
+      arrClasses.push(classes.bold)
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <Navigation
           navItem={this.state.navigation[0].home}
           navItem2={this.state.navigation[1].news}
@@ -92,8 +94,8 @@ class App extends Component {
           navItem4={this.state.navigation[3].about}
         />
         <h1>Hello I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working</p>
-        <button className="button" onClick={this.togglePersonsHandler}>
+        <p className={arrClasses.join(' ')}>This is really working</p>
+        <button className={btnClass} onClick={this.togglePersonsHandler}>
             Toggle Persons
         </button>
         {persons}
