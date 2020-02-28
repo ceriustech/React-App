@@ -88,12 +88,7 @@ class App extends Component {
           navItem3={this.state.navigation[2].contact}
           navItem4={this.state.navigation[3].about}
         />
-        <h1>Hello I'm a React App</h1>
-        <p className={arrClasses.join(' ')}>This is really working</p>
-        <button className={btnClass} onClick={this.togglePersonsHandler}>
-            Toggle Persons
-        </button>
-        {persons}
+        {persons} 
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, ' Hi, I\'m a React App'));
