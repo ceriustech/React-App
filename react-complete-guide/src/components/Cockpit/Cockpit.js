@@ -1,13 +1,28 @@
 import React from 'react';
 
+import classes from './Cockpit.css';
+
 const cockPit = (props) => {
+    const arrClasses = []; 
+    let btnClass = '';
+    if(props.showPersons){
+        btnClass = classes.red;
+    }
+    
+    if(props.persons.length <= 2) {
+      arrClasses.push(classes.red);
+    }
+
+    if(props.persons.length <= 1) {
+      arrClasses.push(classes.bold)
+    }
     return (
-        <div>
+        <div className={classes.Cockpit}>
             <h1>Hello I'm a React App</h1>
-        <p className={arrClasses.join(' ')}>This is really working</p>
-    <button className={btnClass} onClick={this.togglePersonsHandler}>
-        Toggle Persons
-    </button>
+            <p className={arrClasses.join(' ')}>This is really working</p>
+            <button className={btnClass} onClick={props.clicked}>
+                Toggle Persons
+            </button>
         </div>
     );
 }
