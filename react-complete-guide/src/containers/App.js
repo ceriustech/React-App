@@ -16,7 +16,7 @@ class App extends Component {
       { home: "Home" },
       { news: "News" },
       { contact: "Contact" },
-      { about: "about" }
+      { about: "About" }
     ],
     
     persons: [
@@ -27,6 +27,19 @@ class App extends Component {
     otherState: "some other value",
     showPersons: false
   };
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
+
+  shouldComponentUpdate() {
+    console.log('[App.js] shouldComponentUpdate');
+    return true; 
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
 
   static getDerivedStateFromProps(props, state) {
     console.log('[App.js] getDerivedStateFromProps', props);
