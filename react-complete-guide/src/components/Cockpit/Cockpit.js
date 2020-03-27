@@ -1,14 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useRef } from 'react';
 
 import classes from './Cockpit.css';
 
 const cockPit = (props) => {
+    const toggleBtnRef = useRef(null); 
+
     useEffect(() => {
+
         console.log('[Cockpit.js] useEffect');
-        setTimeout(() => {
-            alert('Saved Data To Cloud!');
-        }, 2000);
+        // setTimeout(() => {
+        //     alert('Saved Data To Cloud!');
+        // }, 2000);
+        toggleBtnRef.current.click();
+        return () => {
+            console.log('[Cockpit.js] Cleanup work effect');
+        }
     }, []);
+
+    useEffect(() => {
+        console.log('[Cockpit.js] 2nd useEffect');
+        return () => {
+            console.log('[Cockpit.js] 2nd Cleanup work effect');
+        }
+    });
 
     const arrClasses = []; 
     let btnClass = '';
@@ -27,11 +41,12 @@ const cockPit = (props) => {
         <div className={classes.Cockpit}>
             <h1>Hello I'm a React App</h1>
             <p className={arrClasses.join(' ')}>This is really working</p>
-            <button className={btnClass} onClick={props.clicked}>
+            <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>
                 Toggle Persons
             </button>
+            <button onClick={props.login}>Log in</button>
         </div>
     );
 }
 
-export default cockPit; 
+export default React.memo(cockPit); 

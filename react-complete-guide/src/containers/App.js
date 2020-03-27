@@ -25,7 +25,9 @@ class App extends Component {
       { id: 3, name: "Alyssa", age: 33 }
     ],
     otherState: "some other value",
-    showPersons: false
+    showPersons: false,
+    showCockpit: true,
+    authenticated: false
   };
 
   componentDidMount() {
@@ -75,6 +77,10 @@ class App extends Component {
     this.setState({ showPersons: !doesShow });
   };
 
+  loginHandler = () =>{
+    this.setState({authenticated: true});
+  };
+
   render() {
     console.log('[App.js] render');
     let persons = null;
@@ -98,10 +104,17 @@ class App extends Component {
           navItem3={this.state.navigation[2].contact}
           navItem4={this.state.navigation[3].about}
         />
+        <button onClick={() => {
+          this.setState({ showCockpit: false });
+        }}>Remove Cockpit</button>
+        {this.state.showCockpit ? (
         <Cockpit 
         showPersons={this.state.showPersons} 
         persons={this.state.persons} 
-        clicked={this.togglePersonsHandler} />
+        clicked={this.togglePersonsHandler} 
+        login={this.loginHandler}
+        /> 
+        ) : null }
         {persons} 
       </div>
     );
